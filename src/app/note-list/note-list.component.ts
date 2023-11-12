@@ -16,12 +16,24 @@ export class NoteListComponent {
     this.noteList = this.getDummyData()
   }
 
-  changeFavFilter(filter:"all" | "fav"){
+  getList(): Note[] {
+    if (this.status == 'notes') {
+      if (this.favFilter == 'all') {
+        return this.noteService.normalNotes;
+      } else { }
+      return this.noteService.normalMarkedNotes;
+    }
+    else {
+      return this.noteService.trashNotes;
+    }
+  }
+
+  changeFavFilter(filter: "all" | "fav") {
     this.favFilter = filter;
   }
 
-  changeTrashStatus(){
-    if(this.status == "trash"){
+  changeTrashStatus() {
+    if (this.status == "trash") {
       this.status = "notes";
     } else {
       this.status = "trash";
@@ -45,7 +57,7 @@ export class NoteListComponent {
         id: "25sd4f561w54sdf",
         type: "note",
         title: "css selector",
-        content: `kind p > b   (direktes kind) 
+        content: `kind p > b   (direktes kind)
         nachfahren p b  (alle nachfahren)
         geschwister p ~ b (auf gleicher ebene ist VOR dem p ein b)`,
         marked: true,
@@ -61,9 +73,9 @@ export class NoteListComponent {
         id: "2a35s4d654a6s4d",
         type: "note",
         title: "links",
-        content: `Reihenfolge: a:visited 
-        a:focus 
-        a:hover 
+        content: `Reihenfolge: a:visited
+        a:focus
+        a:hover
         a:active
         merkspruch: LoVe HAte`,
         marked: true,
